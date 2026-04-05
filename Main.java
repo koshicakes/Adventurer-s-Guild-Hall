@@ -215,7 +215,72 @@ public class Main {
             System.out.println("[7] Logout");
 
             while(true){
-                System.out.print("Choi
+                System.out.print("Choice: ");
+
+                if(sc.hasNextInt()){
+                    c = sc.nextInt();
+                    sc.nextLine();
+
+                    if(c>=1 && c<=7) break;
+                } else {
+                    sc.nextLine();
+                }
+
+                System.out.println("Invalid.");
+            }
+
+            switch(c){
+                case 1:
+                    System.out.print("Quest Name: ");
+                    String n = sc.nextLine();
+
+                    int xp, gold;
+
+                    while(true){
+                        System.out.print("XP: ");
+                        if(sc.hasNextInt()){
+                            xp = sc.nextInt(); break;
+                        } else sc.nextLine();
+                    }
+
+                    while(true){
+                        System.out.print("Gold: ");
+                        if(sc.hasNextInt()){
+                            gold = sc.nextInt(); sc.nextLine(); break;
+                        } else sc.nextLine();
+                    }
+
+                    System.out.print("Required Rank (E/D/C/B/A/S): ");
+                    String rank = sc.nextLine();
+
+                    guild.addQuest(n, xp, gold, rank);
+                    break;
+
+                case 2: guild.showQuests(); break;
+                case 3: guild.showAdventurers(); break;
+                case 4: showParties(); break;
+
+                case 5:
+                    System.out.print("Enter Adventurer ID to remove: ");
+                    String rid = sc.nextLine();
+
+                    guild.removeAdventurer(rid);
+                    break;
+
+               case 6:
+                    System.out.print("Enter Adventurer ID: ");
+                    String sid = sc.nextLine();
+
+                    if(sid == null || sid.isEmpty()){
+                        System.out.println("Adventurer not found.");
+                        break;
+                    }
+                    guild.searchAdventurer(sid);
+                    break;
+            }
+
+        }while(c!=7);
+    }
     
 
    // ================= PARTY =================
